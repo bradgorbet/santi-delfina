@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Santi &amp; Delfina</title>
+<meta name="description" content="Celebrating Santi's and Delfina's accomplishments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+
+/* Layout: a family scrapbook. Name tabs switch between the two kids; each kid's page is a stack of category shelves, entries as dated index cards. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #1d2230;
+  --muted: #5d6475;
+  --line: #dde1e8;
+  --santi: #1f5fbf;
+  --santi-soft: #e3ecfa;
+  --delfina: #c4412f;
+  --delfina-soft: #fbe6e2;
+  --danger: #b3261e;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --ui: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151c; --surface: #1b1f29; --ink: #eceef3; --muted: #a2a9b8; --line: #2c3240;
+    --santi: #7fb0ff; --santi-soft: #1d2a42; --delfina: #ff8c78; --delfina-soft: #3a211d; --danger: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151c; --surface: #1b1f29; --ink: #eceef3; --muted: #a2a9b8; --line: #2c3240;
+  --santi: #7fb0ff; --santi-soft: #1d2a42; --delfina: #ff8c78; --delfina-soft: #3a211d; --danger: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; }
+
+header.top { display: grid; gap: 6px; margin-bottom: 28px; }
+.eyebrow { font-family: var(--ui); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 8vw, 68px); line-height: 1; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+h1 .s { color: var(--santi); }
+h1 .d { color: var(--delfina); }
+h1 .amp { color: var(--muted); font-weight: 500; }
+
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.tab { font-family: var(--ui); font-weight: 700; font-size: 18px; padding: 10px 22px; border-radius: 999px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.tab:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent, var(--santi)); outline-offset: 2px; }
+.tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.tab[data-kid="santi"] { --accent: var(--santi); }
+.tab[data-kid="delfina"] { --accent: var(--delfina); }
+
+.kid { --accent: var(--santi); --soft: var(--santi-soft); }
+.kid[data-kid="delfina"] { --accent: var(--delfina); --soft: var(--delfina-soft); }
+.intro { background: var(--soft); border-radius: 20px; padding: 24px 26px; display: grid; gap: 6px; margin-bottom: 32px; }
+.intro h2 { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1.1; margin: 0; color: var(--accent); }
+.intro p { margin: 0; max-width: 62ch; }
+.intro .about { color: var(--ink); }
+.intro .about.empty { color: var(--muted); font-style: italic; }
+.tally { font-family: var(--ui); font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.shelves { display: grid; gap: 34px; }
+.shelf h3 { font-family: var(--display); font-weight: 700; font-size: 22px; margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; }
+.shelf h3 .count { font-family: var(--ui); font-size: 14px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.shelf .hint { font-family: var(--ui); font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+.cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.card .when { font-family: var(--ui); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.card h4 { font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1.25; margin: 0; overflow-wrap: anywhere; }
+.card p { margin: 0; color: var(--muted); font-size: 16px; overflow-wrap: anywhere; white-space: pre-line; }
+.card .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; }
+.empty-shelf { font-family: var(--ui); font-size: 15px; color: var(--muted); border: 1.5px dashed var(--line); border-radius: 14px; padding: 14px 18px; margin: 0; }
+
+.coming { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; text-align: center; color: var(--muted); font-family: var(--ui); }
+
+button.small { font-family: var(--ui); font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+button.small.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 700; }
+button.small.danger { color: var(--danger); border-color: var(--danger); }
+button:disabled { opacity: .55; cursor: default; }
+
+form.add { background: var(--surface); border: 1.5px solid var(--accent); border-radius: 14px; padding: 16px 18px; display: grid; gap: 10px; margin-top: 12px; }
+form.add .grid { display: grid; gap: 10px; grid-template-columns: 1fr 180px; }
+@media (max-width: 520px) { form.add .grid { grid-template-columns: 1fr; } }
+label { font-family: var(--ui); font-size: 13px; color: var(--muted); display: grid; gap: 4px; min-width: 0; }
+input, textarea { font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; min-width: 0; }
+textarea { resize: vertical; min-height: 70px; }
+form.add .row { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+
+.editbar { position: fixed; left: 0; right: 0; bottom: 0; padding-block: 10px calc(10px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: var(--ink); color: var(--bg); font-family: var(--ui); font-size: 14px; text-align: center; z-index: 5; }
+footer { margin-top: 56px; font-family: var(--ui); font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="accomplishments.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
