@@ -33,10 +33,18 @@
   }
 
   function renderHome() {
+    var fam = window.FAMILY || { name: "Gorbejar", parents: [] };
+    var everyone = fam.parents.concat(KIDS.map(function (k) { return data[k].name; }));
+    var names = everyone.length > 1 ? everyone.slice(0, -1).join(", ") + " & " + everyone[everyone.length - 1] : everyone.join("");
     var h = '<div class="wrap">' + nav();
-    h += '<header class="top"><p class="eyebrow">Our family\'s proud moments</p><h1>The Gorbejar kids</h1>' +
-      '<p class="lede">A place for grandparents, family and friends to keep up with what ' +
-      esc(data.santi.name) + ' and ' + esc(data.delfina.name) + ' have been up to.</p></header>';
+    h += '<header class="family">';
+    h += '<div class="family-text"><p class="eyebrow">Our family</p><h1>The ' + esc(fam.name) + 's</h1>' +
+      '<p class="family-names">' + esc(names) + '</p>' +
+      (fam.about ? '<p class="lede">' + esc(fam.about) + '</p>' : '<p class="lede">A place for grandparents, family and friends to keep up with what we\'ve been up to.</p>') +
+      '</div>';
+    if (fam.photo) h += '<figure class="family-photo"><img src="' + esc(fam.photo) + '" alt="' + esc(fam.photoAlt || "") + '" width="480" height="360"></figure>';
+    h += '</header>';
+    h += '<h2 class="section-title">Meet the kids</h2>';
     h += '<div class="kids">' + KIDS.map(function (k) {
       var kid = data[k];
       return '<a class="kidcard ' + k + '" href="/' + k + '/"><span class="name">' + esc(kid.name) + '</span>' +

@@ -5,6 +5,14 @@
 //   details: optional sentence or two
 // Example:
 //   { cat: "awards", title: "Honor roll", when: "2026-06", details: "All A's in 3rd grade." },
+window.FAMILY = {
+  name: "Gorbejar",
+  parents: ["Brad", "Clarisa"],
+  about: "",
+  photo: "/family.jpg",
+  photoAlt: "Brad, Clarisa, Santi and Delfina smiling for a selfie on a coastal bluff above the ocean"
+};
+
 window.ACCOMPLISHMENTS = {
   santi: {
     name: "Santi",
